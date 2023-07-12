@@ -14,8 +14,13 @@
 		Negative Prompt
 		<input type="text" name="negative-prompt" id="negative-prompt" />
 	</label>
+	<label for="steps">
+		Steps
+		<input type="number" name="steps" id="steps" />
+	</label>
 	<button type="submit">Get Image</button>
 </form>
 {#if form}
+	{console.log(form.parameters)}
 	<img src="data:image/png;base64,{form.images[0]}" alt="generated art" />
 {/if}

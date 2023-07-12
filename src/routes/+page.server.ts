@@ -1,16 +1,22 @@
 import type { Actions } from './$types';
+import { API_TXT2IMG_URL } from '$env/static/private';
 
 export const actions: Actions = {
 	get_image: async ({ cookies, request }) => {
 		const data = await request.formData();
 
-		const url = 'http://127.0.0.1:7860/sdapi/v1/txt2img';
-		const payload = {
-			prompt: data.get('prompt'),
-			steps: 5
+		const overrideSettings = {
+			sd_model_checkpoint: 'realisticVisionV30_v30VAE'
 		};
 
-		const response = await fetch(url, {
+		const payload = {
+			prompt: data.get('prompt'),
+			negative_prompt: data.get('negative_prompt'),
+			steps: data.get('steps'),
+			override_settings: overrideSettings
+		};
+
+		const response = await fetch(API_TXT2IMG_URL, {
 			method: 'POST',
 			body: JSON.stringify(payload),
 			headers: {
