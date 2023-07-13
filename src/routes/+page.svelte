@@ -22,5 +22,5 @@
 </form>
 {#if form}
 	{console.log(form.parameters)}
-	<img src="data:image/png;base64,{form.images[0]}" alt="generated art" />
+	<main />
 {/if}
