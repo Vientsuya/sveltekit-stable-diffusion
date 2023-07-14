@@ -1,12 +1,20 @@
-import type { Actions } from './$types';
-import { API_TXT2IMG_URL } from '$env/static/private';
+import type { Actions, PageServerLoad } from './$types';
+import { API_TXT2IMG_URL, API_SD_MODELS_URL } from '$env/static/private';
+
+export const load: PageServerLoad = async ({ params }) => {
+	const response = await fetch(API_SD_MODELS_URL).then((res) => res.json());
+
+	return {
+		models: response
+	};
+};
 
 export const actions: Actions = {
 	get_image: async ({ cookies, request }) => {
 		const data = await request.formData();
 
 		const overrideSettings = {
-			sd_model_checkpoint: 'dreamshaper_7'
+			sd_model_checkpoint: data.get('sd-model')
 		};
 
 		const payload = {

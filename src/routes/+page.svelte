@@ -1,11 +1,14 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import { enhance } from '$app/forms';
 
 	import Container from '../components/Container.svelte';
 
 	export let form;
+	export let data: PageData;
 
 	let stepsValue = 10;
+	let prompt = 'masterpiece';
 </script>
 
 <Container>
@@ -13,6 +16,23 @@
 		<div class="w-96">
 			<form method="post" action="?/get_image" use:enhance>
 				<div>
+					{#if data}
+						<label for="sd-model" class="block mb-2 text-md font-medium text-white">
+							Select a model
+						</label>
+						<select
+							id="sd-model"
+							name="sd-model"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						>
+							{#each data.models as model}
+								<option value={model.model_name}>{model.model_name}</option>
+							{/each}
+						</select>
+					{/if}
+				</div>
+
+				<div class="mt-4">
 					<label for="prompt" class="block mb-2 text-md font-medium text-white"> Prompt </label>
 					<textarea
 						required
@@ -20,11 +40,11 @@
 						name="prompt"
 						rows="4"
 						class="block p-2.5 w-full text-sm rounded-lg resize-none border bg-gray-700 border-green-600 placeholder-gray-400 text-white focus:outline-none focus:border-green-400"
-						placeholder="Enter your prompt here"
+						bind:value={prompt}
 					/>
 				</div>
 
-				<div>
+				<div class="mt-4">
 					<label for="negative-prompt" class="block mb-2 text-md font-medium text-white">
 						Negative Prompt
 					</label>
@@ -38,7 +58,7 @@
 					/>
 				</div>
 
-				<div>
+				<div class="mt-4">
 					<label for="steps" class="block"> Steps: {stepsValue}</label>
 					<input
 						id="steps"
