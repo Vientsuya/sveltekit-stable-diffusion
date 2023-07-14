@@ -8,13 +8,20 @@
 	export let data: PageData;
 
 	let stepsValue = 10;
-	let prompt = 'masterpiece';
 </script>
 
 <Container>
 	<div class="flex justify-content">
 		<div class="w-96">
-			<form method="post" action="?/get_image" use:enhance>
+			<form
+				method="post"
+				action="?/get_image"
+				use:enhance={() => {
+					return ({ update }) => {
+						update({ reset: false });
+					};
+				}}
+			>
 				<div>
 					{#if data}
 						<label for="sd-model" class="block mb-2 text-md font-medium text-white">
@@ -40,7 +47,6 @@
 						name="prompt"
 						rows="4"
 						class="block p-2.5 w-full text-sm rounded-lg resize-none border bg-gray-700 border-green-600 placeholder-gray-400 text-white focus:outline-none focus:border-green-400"
-						bind:value={prompt}
 					/>
 				</div>
 
