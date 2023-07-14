@@ -2,7 +2,7 @@
 	import '../app.css';
 </script>
 
-<div class="w-screen h-screen bg-theme-light-black text-white">
+<div class="w-screen h-screen text-white">
 	<nav class="flex items-center justify-between p-5">
 		<img src="#" alt="logo" />
 		<ul class="flex">
