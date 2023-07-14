@@ -6,7 +6,7 @@ export const actions: Actions = {
 		const data = await request.formData();
 
 		const overrideSettings = {
-			sd_model_checkpoint: 'realisticVisionV30_v30VAE'
+			sd_model_checkpoint: 'dreamshaper_7'
 		};
 
 		const payload = {

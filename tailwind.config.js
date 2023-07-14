@@ -3,11 +3,12 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		colors: {
-			'dark-blue': '#5680E9',
-			'medium-blue': '#5AB9EA',
-			'light-blue': '#84CEEB',
-			'bleak-pink': '#C1C8E4',
-			'dark-purple': '#8860D0'
+			'theme-black': '#0B0C10',
+			'theme-light-black': '#1F2833',
+			'theme-beige': '#C5C6C7',
+			'theme-light-blue': '#66FCF1',
+			'theme-bleak-blue': '#45A29E',
+			white: '#fff'
 		},
 		extend: {}
 	},
