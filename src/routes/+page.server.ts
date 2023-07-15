@@ -6,8 +6,8 @@ export const load: PageServerLoad = async ({ params }) => {
 	const responseSamplers = await fetch(API_SAMPLERS_URL).then((res) => res.json());
 
 	return {
-		models: responseModels,
-		samplers: responseSamplers
+		models: responseModels.map((model: any) => model.model_name),
+		samplers: responseSamplers.map((sampler: any) => sampler.name)
 	};
 };
 

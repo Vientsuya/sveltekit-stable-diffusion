@@ -3,6 +3,7 @@
 	import { enhance } from '$app/forms';
 
 	import Container from '../components/Container.svelte';
+	import DynamicSelect from '../components/DynamicSelect.svelte';
 
 	export let form;
 	export let data: PageData;
@@ -24,39 +25,13 @@
 					};
 				}}
 			>
-				<div>
-					{#if data}
-						<label for="sd-model" class="block mb-2 text-md font-medium text-white">
-							Select a model
-						</label>
-						<select
-							bind:value={currentModel}
-							id="sd-model"
-							name="sd-model"
-							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						>
-							{#each data.models as model}
-								<option value={model.model_name}>{model.model_name}</option>
-							{/each}
-						</select>
-					{/if}
-				</div>
+				{#if data}
+					<DynamicSelect caption="Model" selectOptions={data.models} selectName="sd-model" />
+				{/if}
 
-				<div class="mt-4">
-					{#if data}
-						<label for="sampler" class="block mb-2 text-md font-medium text-white"> Sampler </label>
-						<select
-							bind:value={currentSampler}
-							id="sampler"
-							name="sampler"
-							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						>
-							{#each data.samplers as sampler}
-								<option value={sampler.name}>{sampler.name}</option>
-							{/each}
-						</select>
-					{/if}
-				</div>
+				{#if data}
+					<DynamicSelect caption="Sampler" selectOptions={data.samplers} selectName="sampler" />
+				{/if}
 
 				<div class="mt-4">
 					<label for="prompt" class="block mb-2 text-md font-medium text-white"> Prompt </label>
