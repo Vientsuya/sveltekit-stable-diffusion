@@ -9,6 +9,7 @@
 
 	let stepsValue = 10;
 	let currentModel: string;
+	let currentSampler: string;
 </script>
 
 <Container>
@@ -42,6 +43,22 @@
 				</div>
 
 				<div class="mt-4">
+					{#if data}
+						<label for="sampler" class="block mb-2 text-md font-medium text-white"> Sampler </label>
+						<select
+							bind:value={currentSampler}
+							id="sampler"
+							name="sampler"
+							class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						>
+							{#each data.samplers as sampler}
+								<option value={sampler.name}>{sampler.name}</option>
+							{/each}
+						</select>
+					{/if}
+				</div>
+
+				<div class="mt-4">
 					<label for="prompt" class="block mb-2 text-md font-medium text-white"> Prompt </label>
 					<textarea
 						required
@@ -49,6 +66,7 @@
 						name="prompt"
 						rows="4"
 						class="block p-2.5 w-full text-sm rounded-lg resize-none border bg-gray-700 border-green-600 placeholder-gray-400 text-white focus:outline-none focus:border-green-400"
+						placeholder="Enter your prompt here"
 					/>
 				</div>
 
