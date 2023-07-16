@@ -1,9 +1,15 @@
 import type { Actions, PageServerLoad } from './$types';
-import { API_TXT2IMG_URL, API_SD_MODELS_URL, API_SAMPLERS_URL } from '$env/static/private';
+import {
+	API_TXT2IMG_URL,
+	API_SD_MODELS_URL,
+	API_SAMPLERS_URL,
+	API_VAE_URL
+} from '$env/static/private';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const responseModels = await fetch(API_SD_MODELS_URL).then((res) => res.json());
 	const responseSamplers = await fetch(API_SAMPLERS_URL).then((res) => res.json());
+	const responseVAE = await fetch(API_VAE_URL).then((res) => res.json());
 
 	return {
 		models: responseModels.map((model: any) => model.model_name),
@@ -21,8 +27,9 @@ export const actions: Actions = {
 
 		const payload = {
 			prompt: data.get('prompt'),
-			negative_prompt: data.get('negative_prompt'),
+			negative_prompt: data.get('negative-prompt'),
 			steps: data.get('steps'),
+			cfg_scale: data.get('cfg-scale'),
 			sampler: data.get('sampler'),
 			override_settings: overrideSettings
 		};

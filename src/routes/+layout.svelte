@@ -6,9 +6,9 @@
 	<nav class="flex items-center justify-between p-5">
 		<img src="#" alt="logo" />
 		<ul class="flex">
-			<li class="mx-10">Home</li>
-			<li class="mx-10">Create</li>
-			<li class="mx-10">Train</li>
+			<li class="mx-10"><a href="/">Home</a></li>
+			<li class="mx-10"><a href="/create">Create</a></li>
+			<li class="mx-10"><a href="/train">Train</a></li>
 		</ul>
 		<button>Sign up</button>
 	</nav>
