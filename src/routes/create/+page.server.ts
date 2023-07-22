@@ -30,7 +30,7 @@ export const actions: Actions = {
 			negative_prompt: data.get('negative-prompt'),
 			steps: data.get('steps'),
 			cfg_scale: data.get('cfg-scale'),
-			sampler: data.get('sampler'),
+			sampler_name: data.get('sampler'),
 			override_settings: overrideSettings
 		};
 
@@ -42,6 +42,7 @@ export const actions: Actions = {
 			}
 		}).then((res) => res.json());
 
+		console.log(response);
 		return response;
 	}
 };
