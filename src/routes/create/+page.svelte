@@ -22,12 +22,11 @@
 </script>
 
 <Container>
-	<div class="flex justify-content">
-		<div class="w-96">
+	<div class="flex justify-content items-center">
+		<div class="w-[30rem] p-5 shadow-md shadow-[rgba(0,0,0,.25)] rounded-3xl">
 			<form
 				method="post"
 				action="?/get_image"
-				class=""
 				use:enhance={() => {
 					return ({ update }) => {
 						update({ reset: false });
@@ -95,17 +94,19 @@
 					/>
 				</div>
 
-				<button
-					type="submit"
-					class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
-				>
-					Get Image
-				</button>
+				<div class="flex justify-around">
+					<button
+						type="submit"
+						class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+					>
+						Get Image
+					</button>
 
-				<button
-					class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
-					on:click|preventDefault={loadExamplePrompt}>Load Prompt</button
-				>
+					<button
+						class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+						on:click|preventDefault={loadExamplePrompt}>Load Prompt</button
+					>
+				</div>
 			</form>
 		</div>
 
