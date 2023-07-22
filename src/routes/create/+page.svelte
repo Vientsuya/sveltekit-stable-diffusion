@@ -8,6 +8,15 @@
 	export let form: ActionData;
 	export let data: PageData;
 
+	function loadExamplePrompt() {
+		const prompt = document.getElementById('prompt') as HTMLTextAreaElement;
+		const negativePrompt = document.getElementById('negative-prompt') as HTMLTextAreaElement;
+		prompt.value =
+			'photo, raw image, highres, intricate detailing, (masterpiece:1.2), fujifilm x3, young woman, full body, japanese street';
+		negativePrompt.value =
+			'(fat:1.3), 3d, cartoon, anime, sketches, (worst quality, bad quality, cropped:1.4) ((monochrome)), ((grayscale)), (negative_hands:1.0), (easynegative:0.8), (bad-artist-anime:0.8), (bad-artist:0.8), (bad-picture-chill-75v:0.8), (bad_prompt_version2:0.8), (bad_quality:0.8), nude, nsfw';
+	}
+
 	let stepsValue = 10;
 	let cfgScaleValue = 7;
 </script>
@@ -18,6 +27,7 @@
 			<form
 				method="post"
 				action="?/get_image"
+				class=""
 				use:enhance={() => {
 					return ({ update }) => {
 						update({ reset: false });
@@ -91,6 +101,11 @@
 				>
 					Get Image
 				</button>
+
+				<button
+					class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+					on:click|preventDefault={loadExamplePrompt}>Load Prompt</button
+				>
 			</form>
 		</div>
 
