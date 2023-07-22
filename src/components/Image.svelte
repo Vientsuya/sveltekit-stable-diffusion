@@ -4,7 +4,7 @@
 </script>
 
 <img
-	class="h-auto max-w-full rounded-lg"
+	class="h-auto max-w-full rounded-lg cursor-pointer"
 	src="data:image/png;base64,{generatedImage}"
 	alt={generatedImageAlt}
 />

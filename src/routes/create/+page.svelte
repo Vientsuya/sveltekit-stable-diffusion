@@ -4,7 +4,8 @@
 
 	import Container from '../../components/Container.svelte';
 	import DynamicSelect from '../../components/DynamicSelect.svelte';
-	import ImageModal from '../../components/ImageModal.svelte';
+	import Image from '../../components/Image.svelte';
+	import ImageGallery from '../../components/ImageGallery.svelte';
 
 	export let form: ActionData;
 	export let data: PageData;
@@ -119,13 +120,8 @@
 				</div>
 			</form>
 		</div>
-
-		<div class="w-[512px] h-[512px] ml-12">
-			<div class="grid grid-cols-3 gap-4 p-12">
-				{#if form}
-					<ImageModal generatedImage={form.images[0]} generatedImageAlt="Generated Image" />
-				{/if}
-			</div>
-		</div>
+		{#if form}
+			<ImageGallery {form} />
+		{/if}
 	</div>
 </Container>
