@@ -38,6 +38,15 @@
 				{/if}
 
 				{#if data}
+					<DynamicSelect
+						caption="Vae"
+						selectOptions={data.vaes}
+						selectName="sd-vae"
+						extraSelects={['Automatic', 'None']}
+					/>
+				{/if}
+
+				{#if data}
 					<DynamicSelect caption="Sampler" selectOptions={data.samplers} selectName="sampler" />
 				{/if}
 

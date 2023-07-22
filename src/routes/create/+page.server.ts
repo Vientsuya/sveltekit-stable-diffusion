@@ -13,6 +13,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	return {
 		models: responseModels.map((model: any) => model.model_name),
+		vaes: responseVAE.map((vae: any) => vae.model_name),
 		samplers: responseSamplers.map((sampler: any) => sampler.name)
 	};
 };
@@ -22,7 +23,8 @@ export const actions: Actions = {
 		const data = await request.formData();
 
 		const overrideSettings = {
-			sd_model_checkpoint: data.get('sd-model')
+			sd_model_checkpoint: data.get('sd-model'),
+			sd_vae: data.get('sd-vae')
 		};
 
 		const payload = {
