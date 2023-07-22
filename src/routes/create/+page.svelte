@@ -4,6 +4,7 @@
 
 	import Container from '../../components/Container.svelte';
 	import DynamicSelect from '../../components/DynamicSelect.svelte';
+	import ImageModal from '../../components/ImageModal.svelte';
 
 	export let form: ActionData;
 	export let data: PageData;
@@ -12,7 +13,7 @@
 		const prompt = document.getElementById('prompt') as HTMLTextAreaElement;
 		const negativePrompt = document.getElementById('negative-prompt') as HTMLTextAreaElement;
 		prompt.value =
-			'photo, raw image, highres, intricate detailing, (masterpiece:1.2), fujifilm x3, young woman, full body, japanese street';
+			'photo, raw image, highres, intricate detailing, (masterpiece:1.2), fujifilm xt3, young woman, full body, japanese street';
 		negativePrompt.value =
 			'(fat:1.3), 3d, cartoon, anime, sketches, (worst quality, bad quality, cropped:1.4) ((monochrome)), ((grayscale)), (negative_hands:1.0), (easynegative:0.8), (bad-artist-anime:0.8), (bad-artist:0.8), (bad-picture-chill-75v:0.8), (bad_prompt_version2:0.8), (bad_quality:0.8), nude, nsfw';
 	}
@@ -22,7 +23,7 @@
 </script>
 
 <Container>
-	<div class="flex justify-content items-center">
+	<div class="flex justify-content">
 		<div class="w-[30rem] p-5 shadow-md shadow-[rgba(0,0,0,.25)] rounded-3xl">
 			<form
 				method="post"
@@ -42,7 +43,7 @@
 						caption="Vae"
 						selectOptions={data.vaes}
 						selectName="sd-vae"
-						extraSelects={['Automatic', 'None']}
+						extraOptions={['Automatic', 'None']}
 					/>
 				{/if}
 
@@ -120,9 +121,11 @@
 		</div>
 
 		<div class="w-[512px] h-[512px] ml-12">
-			{#if form}
-				<img src="data:image/png;base64,{form.images[0]}" alt="generated art" />
-			{/if}
+			<div class="grid grid-cols-3 gap-4 p-12">
+				{#if form}
+					<ImageModal generatedImage={form.images[0]} generatedImageAlt="Generated Image" />
+				{/if}
+			</div>
 		</div>
 	</div>
 </Container>

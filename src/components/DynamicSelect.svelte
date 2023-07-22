@@ -2,7 +2,7 @@
 	export let selectOptions: string[];
 	export let caption: string;
 	export let selectName: string;
-	export let extraSelects: string[] = [];
+	export let extraOptions: string[] = [];
 
 	let bindedValue: string;
 </script>
@@ -15,9 +15,9 @@
 		name={selectName}
 		class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 	>
-		{#if extraSelects.length}
-			{#each extraSelects as extraSelect}
-				<option value={extraSelect}>{extraSelect}</option>
+		{#if extraOptions.length}
+			{#each extraOptions as extraOption}
+				<option value={extraOption}>{extraOption}</option>
 			{/each}
 		{/if}
 
