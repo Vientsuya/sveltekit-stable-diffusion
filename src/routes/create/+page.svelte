@@ -120,8 +120,10 @@
 				</div>
 			</form>
 		</div>
-		{#if form}
-			<ImageGallery {form} />
-		{/if}
+		<div class="w-[512px] h-[512px] ml-12">
+			{#if form}
+				<ImageGallery {form} />
+			{/if}
+		</div>
 	</div>
 </Container>
