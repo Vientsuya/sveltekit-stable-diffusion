@@ -44,7 +44,6 @@ export const actions: Actions = {
 			}
 		}).then((res) => res.json());
 
-		console.log(response);
 		return response;
 	}
 };

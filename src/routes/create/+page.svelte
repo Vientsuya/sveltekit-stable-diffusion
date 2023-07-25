@@ -4,10 +4,8 @@
 
 	import Container from '../../components/Container.svelte';
 	import DynamicSelect from '../../components/DynamicSelect.svelte';
-	import Image from '../../components/Image.svelte';
 	import ImageGallery from '../../components/ImageGallery.svelte';
 
-	export let form: ActionData;
 	export let data: PageData;
 
 	function loadExamplePrompt() {
@@ -120,10 +118,6 @@
 				</div>
 			</form>
 		</div>
-		<div class="w-[512px] h-[512px] ml-12">
-			{#if form}
-				<ImageGallery {form} />
-			{/if}
-		</div>
+		<div class="w-[512px] h-[512px] ml-12" />
 	</div>
 </Container>
