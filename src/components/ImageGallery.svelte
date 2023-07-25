@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Image from './Image.svelte';
 	import ImageModal from './ImageModal.svelte';
-	import { imageModalString } from '../stores/stores';
+	import { imageModalUrl } from '../stores/stores';
 
 	export let images: any;
 
 	function handleImageClick(image: string) {
-		imageModalString.set(image);
+		imageModalUrl.set(image);
 	}
 </script>
 

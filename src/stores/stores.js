@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export const imageModalString = writable('');
+export const imageModalUrl = writable('');

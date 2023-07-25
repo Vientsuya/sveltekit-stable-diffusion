@@ -3,18 +3,21 @@ import {
 	API_TXT2IMG_URL,
 	API_SD_MODELS_URL,
 	API_SAMPLERS_URL,
-	API_VAE_URL
+	API_VAE_URL,
+	API_GET_IMAGES_URL
 } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const responseModels = await fetch(API_SD_MODELS_URL).then((res) => res.json());
 	const responseSamplers = await fetch(API_SAMPLERS_URL).then((res) => res.json());
 	const responseVAE = await fetch(API_VAE_URL).then((res) => res.json());
+	const images = await fetch(API_GET_IMAGES_URL).then((res) => res.json());
 
 	return {
 		models: responseModels.map((model: any) => model.model_name),
 		vaes: responseVAE.map((vae: any) => vae.model_name),
-		samplers: responseSamplers.map((sampler: any) => sampler.name)
+		samplers: responseSamplers.map((sampler: any) => sampler.name),
+		images: images.image_url
 	};
 };
 

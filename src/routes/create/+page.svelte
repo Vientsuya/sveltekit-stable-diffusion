@@ -118,6 +118,8 @@
 				</div>
 			</form>
 		</div>
-		<div class="w-[512px] h-[512px] ml-12" />
+		<div class="w-[512px] h-[512px] ml-12">
+			<ImageGallery images={data.images} />
+		</div>
 	</div>
 </Container>
