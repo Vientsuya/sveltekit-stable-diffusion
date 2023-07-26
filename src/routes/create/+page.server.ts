@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import { nanoid } from 'nanoid';
 import type { Actions, PageServerLoad } from './$types';
 import {
 	API_TXT2IMG_URL,
@@ -47,6 +49,8 @@ export const actions: Actions = {
 			}
 		}).then((res) => res.json());
 
-		return response;
+		const imageString = response.images[0];
+		const imageBuffer = Buffer.from(imageString, 'base64');
+		fs.writeFileSync(`static/generated_images/${nanoid(10)}.png`, imageBuffer);
 	}
 };

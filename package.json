@@ -31,6 +31,6 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "^5.0.0",
-		"mysql2": "^3.5.2"
+		"nanoid": "^4.0.2"
 	}
 }
