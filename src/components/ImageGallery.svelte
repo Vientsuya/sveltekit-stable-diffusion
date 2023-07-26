@@ -5,8 +5,8 @@
 
 	export let images: any;
 
-	function handleImageClick(image: string) {
-		imageModalUrl.set(image);
+	function handleImageClick(imageUrl: string) {
+		imageModalUrl.set(imageUrl);
 	}
 </script>
 
@@ -14,9 +14,9 @@
 	{#if images}
 		{#each images as image}
 			<Image
-				generatedImage={image}
+				generatedImage={image.image_url}
 				generatedImageAlt="Generated Image"
-				on:click={() => handleImageClick(image)}
+				on:click={() => handleImageClick(image.image_url)}
 			/>
 		{/each}
 	{/if}

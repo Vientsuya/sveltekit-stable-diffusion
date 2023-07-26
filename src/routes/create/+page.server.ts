@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		models: responseModels.map((model: any) => model.model_name),
 		vaes: responseVAE.map((vae: any) => vae.model_name),
 		samplers: responseSamplers.map((sampler: any) => sampler.name),
-		images: images.image_url
+		images: images.images
 	};
 };
 
