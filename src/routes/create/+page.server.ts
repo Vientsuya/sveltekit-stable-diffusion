@@ -29,16 +29,16 @@ export const actions: Actions = {
 		const data = await request.formData();
 
 		const overrideSettings = {
-			sd_model_checkpoint: data.get('sd-model'),
-			sd_vae: data.get('sd-vae')
+			sd_model_checkpoint: data.get('sd-model') as string,
+			sd_vae: data.get('sd-vae') as string
 		};
 
 		const payload = {
-			prompt: data.get('prompt'),
-			negative_prompt: data.get('negative-prompt'),
-			steps: data.get('steps'),
-			cfg_scale: data.get('cfg-scale'),
-			sampler_name: data.get('sampler'),
+			prompt: data.get('prompt') as string,
+			negative_prompt: data.get('negative-prompt') as string,
+			steps: data.get('steps') as unknown as number,
+			cfg_scale: data.get('cfg-scale') as unknown as number,
+			sampler_name: data.get('sampler') as string,
 			override_settings: overrideSettings
 		};
 
@@ -54,7 +54,18 @@ export const actions: Actions = {
 		const imageBuffer = Buffer.from(imageString, 'base64');
 		const imageId = nanoid(10);
 
+		const ImageData = {
+			image_url: `/generated_images/${imageId}.png`,
+			sd_model_checkpoint: overrideSettings.sd_model_checkpoint,
+			sd_vae: overrideSettings.sd_vae,
+			sampler_name: payload.sampler_name,
+			prompt: payload.prompt,
+			negative_prompt: payload.negative_prompt,
+			cfg_scale: payload.cfg_scale,
+			steps: payload.steps
+		};
+
 		fs.writeFileSync(`static/generated_images/${imageId}.png`, imageBuffer);
-		addImage({ image_url: `/generated_images/${imageId}.png` });
+		addImage(ImageData);
 	}
 };

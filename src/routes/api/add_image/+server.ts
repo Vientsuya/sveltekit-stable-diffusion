@@ -1,33 +1,24 @@
 import { PrismaClient } from '@prisma/client';
+import type { Image } from '$lib/api_interactions/db_handler';
 
 const prisma = new PrismaClient();
 
 export async function POST({ request }) {
-	const body = await request.json();
+	const body: Image = await request.json();
 	try {
 		if (body) {
-			// res is a number of added images
-			const res = await prisma.images.createMany({
-				data: [
-					{ image_url: body.image_url },
-					{ image_url: body.image_url },
-					{ image_url: body.image_url },
-					{ image_url: body.image_url }
-				],
-				skipDuplicates: true
-			});
-
+			const res = await prisma.images.create({ data: body });
 			return new Response(
-				JSON.stringify({ message: 'Wszystko poszło git', added_image: body.image_url }),
+				JSON.stringify({ message: 'Everything went OK.', added_image: body.image_url }),
 				{ status: 200 }
 			);
 		} else {
-			return new Response(JSON.stringify({ error: 'Body jest puste, weź że podaj parametr' }), {
+			return new Response(JSON.stringify({ error: 'Body is empty.' }), {
 				status: 500
 			});
 		}
 	} catch (error) {
-		return new Response(JSON.stringify({ error: 'Cosik nie działa przy tworzeniu image.' }), {
+		return new Response(JSON.stringify({ error: 'Something went wrong idk what.' }), {
 			status: 500
 		});
 	} finally {

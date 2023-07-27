@@ -11,6 +11,14 @@ datasource db {
 }
 
 model Images {
-  id Int @id @default(autoincrement())
-  image_url String @db.VarChar(255) @unique
+  id                  Int      @id @default(autoincrement())
+  image_url           String   @unique @db.VarChar(255)
+  sd_model_checkpoint String   @db.VarChar(128)
+  sd_vae              String   @db.VarChar(128)
+  sampler_name        String   @db.VarChar(64)
+  prompt              String   @db.VarChar(1024)
+  negative_prompt     String   @db.VarChar(1024)
+  cfg_scale           Float    @db.Float
+  steps               Int      @db.Int
+  created_at          DateTime @default(now())
 }
