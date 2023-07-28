@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import { nanoid } from 'nanoid';
 import { addImage } from '$lib/api_interactions/db_handler';
+import getSeed from '$lib/utils/get_seed';
 import type { Actions, PageServerLoad } from './$types';
 import {
 	API_TXT2IMG_URL,
@@ -36,8 +37,8 @@ export const actions: Actions = {
 		const payload = {
 			prompt: data.get('prompt') as string,
 			negative_prompt: data.get('negative-prompt') as string,
-			steps: data.get('steps') as unknown as number,
-			cfg_scale: data.get('cfg-scale') as unknown as number,
+			steps: Number(data.get('steps')),
+			cfg_scale: Number(data.get('cfg-scale')),
 			sampler_name: data.get('sampler') as string,
 			override_settings: overrideSettings
 		};
@@ -56,13 +57,14 @@ export const actions: Actions = {
 
 		const ImageData = {
 			image_url: `/generated_images/${imageId}.png`,
-			sd_model_checkpoint: overrideSettings.sd_model_checkpoint,
-			sd_vae: overrideSettings.sd_vae,
-			sampler_name: payload.sampler_name,
-			prompt: payload.prompt,
-			negative_prompt: payload.negative_prompt,
-			cfg_scale: payload.cfg_scale,
-			steps: payload.steps
+			sd_model_checkpoint: response.parameters.override_settings.sd_model_checkpoint as string,
+			sd_vae: response.parameters.override_settings.sd_vae as string,
+			sampler_name: response.parameters.sampler_name as string,
+			prompt: response.parameters.prompt as string,
+			negative_prompt: response.parameters.negative_prompt as string,
+			cfg_scale: response.parameters.cfg_scale as number,
+			steps: response.parameters.steps as number,
+			seed: getSeed(response.info as string)
 		};
 
 		fs.writeFileSync(`static/generated_images/${imageId}.png`, imageBuffer);

@@ -9,6 +9,7 @@ export type Image = {
 	negative_prompt: string;
 	cfg_scale: number;
 	steps: number;
+	seed: string;
 };
 
 export async function addImage(image: Image) {
@@ -19,8 +20,9 @@ export async function addImage(image: Image) {
 		sampler_name: image.sampler_name,
 		prompt: image.prompt,
 		negative_prompt: image.negative_prompt,
-		cfg_scale: Number(image.cfg_scale),
-		steps: Number(image.steps)
+		cfg_scale: image.cfg_scale,
+		steps: image.steps,
+		seed: image.seed
 	};
 
 	fetch(API_ADD_IMAGE_URL, {

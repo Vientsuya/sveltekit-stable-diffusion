@@ -20,5 +20,6 @@ model Images {
   negative_prompt     String   @db.VarChar(1024)
   cfg_scale           Float    @db.Float
   steps               Int      @db.Int
+  seed                String   @db.VarChar(32)
   created_at          DateTime @default(now())
 }
