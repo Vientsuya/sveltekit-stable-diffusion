@@ -14,6 +14,7 @@
 	{#if images}
 		{#each images as image}
 			<Image
+				id={image.id}
 				generatedImage={image.image_url}
 				generatedImageAlt="Generated Image"
 				on:click={() => handleImageClick(image.image_url)}

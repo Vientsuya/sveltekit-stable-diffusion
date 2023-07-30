@@ -1,4 +1,4 @@
-import { API_ADD_IMAGE_URL } from '$env/static/private';
+import { API_IMAGE_URL } from '$env/static/private';
 
 export type Image = {
 	image_url: string;
@@ -25,7 +25,7 @@ export async function addImage(image: Image) {
 		seed: image.seed
 	};
 
-	fetch(API_ADD_IMAGE_URL, {
+	fetch(API_IMAGE_URL, {
 		method: 'POST',
 		body: JSON.stringify(payload),
 		headers: {
