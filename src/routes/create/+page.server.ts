@@ -15,13 +15,13 @@ export const load: PageServerLoad = async ({ params }) => {
 	const responseModels = await fetch(API_SD_MODELS_URL).then((res) => res.json());
 	const responseSamplers = await fetch(API_SAMPLERS_URL).then((res) => res.json());
 	const responseVAE = await fetch(API_VAE_URL).then((res) => res.json());
-	const images = await fetch(API_IMAGE_URL).then((res) => res.json());
+	const responseImages = await fetch(API_IMAGE_URL).then((res) => res.json());
 
 	return {
 		models: responseModels.map((model: any) => model.model_name),
 		vaes: responseVAE.map((vae: any) => vae.model_name),
 		samplers: responseSamplers.map((sampler: any) => sampler.name),
-		images: images.images
+		images: responseImages
 	};
 };
 

@@ -1,23 +1,27 @@
 <script lang="ts">
+	import { invalidate, invalidateAll } from '$app/navigation';
+
 	export let generatedImage: string;
 	export let generatedImageAlt: string;
 	export let id: number;
 
-	function deleteImage(id: number) {
+	async function deleteImage(id: number) {
 		const payload = {
 			id: id
 		};
 
-		fetch('http://[::1]:5173/api/image', {
+		await fetch('http://[::1]:5173/api/image', {
 			method: 'DELETE',
 			body: JSON.stringify(payload),
 			headers: {
 				'content-type': 'application/json; charset=UTF-8',
-				'Access-Control-Request-Method': 'POST',
+				'Access-Control-Request-Method': 'DELETE',
 				'Access-Control-Request-Headers': 'Content-Type',
 				Origin: 'http://localhost:5173'
 			}
 		});
+
+		invalidateAll();
 	}
 </script>
 

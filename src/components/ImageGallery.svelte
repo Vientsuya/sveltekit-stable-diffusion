@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Image from './Image.svelte';
 	import ImageModal from './ImageModal.svelte';
-	import { imageModalUrl } from '../stores/stores';
+	import { imageModal } from '../stores/stores';
+	import type { generatedImage } from '../ambient';
 
 	export let images: any;
 
-	function handleImageClick(imageUrl: string) {
-		imageModalUrl.set(imageUrl);
+	function handleImageClick(image: generatedImage) {
+		imageModal.set(image);
 	}
 </script>
 
@@ -17,7 +18,7 @@
 				id={image.id}
 				generatedImage={image.image_url}
 				generatedImageAlt="Generated Image"
-				on:click={() => handleImageClick(image.image_url)}
+				on:click={() => handleImageClick(image)}
 			/>
 		{/each}
 	{/if}

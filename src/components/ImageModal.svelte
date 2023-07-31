@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { imageModalUrl } from '../stores/stores.js';
+	import { imageModal } from '../stores/stores.js';
 
 	function handleBgClick() {
-		imageModalUrl.set('');
+		imageModal.set(null);
 	}
 </script>
 
-{#if $imageModalUrl !== ''}
+{#if $imageModal !== null}
 	<div
 		role="button"
 		tabindex="0"
@@ -16,10 +16,14 @@
 				handleBgClick();
 			}
 		}}
-		class="flex cursor-default justify-center items-center fixed top-0 right-0 left-0 bottom-0 bg-[rgba(0,0,0,.75)] w-screen h-screen"
+		class="flex cursor-default justify-center items-center fixed top-0 right-0 left-0 bottom-0 bg-[rgba(0,0,0,.6)] w-screen h-screen"
 	>
-		<div on:click|stopPropagation class="cursor-default">
-			<img src={$imageModalUrl} alt="modal-generated-img" />
+		<div class="flex p-6 rounded-xl bg-theme-light-black">
+			<div on:click|stopPropagation class="cursor-default">
+				<img src={$imageModal.image_url} alt="modal-generated-img" />
+			</div>
+
+			<div />
 		</div>
 	</div>
 {/if}
