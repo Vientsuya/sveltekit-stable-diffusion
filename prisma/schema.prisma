@@ -10,6 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Users {
+  id              Int      @id @default(autoincrement())
+  username        String   @unique @db.VarChar(32)
+  password        String   @db.VarChar(255)
+  email           String   @unique @db.VarChar(255)
+  generatedImages Images[]
+  registered_at   DateTime @default(now())
+}
+
 model Images {
   id                  Int      @id @default(autoincrement())
   image_url           String   @unique @db.VarChar(255)
@@ -22,4 +31,6 @@ model Images {
   steps               Int      @db.Int
   seed                String   @db.VarChar(32)
   created_at          DateTime @default(now())
+  author              Users    @relation(fields: [usersId], references: [id])
+  usersId             Int
 }
