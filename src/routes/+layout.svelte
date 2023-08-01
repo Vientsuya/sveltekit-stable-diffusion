@@ -9,7 +9,7 @@
 </script>
 
 <div class="w-screen h-screen text-white">
-	<nav class="flex items-center justify-between p-5">
+	<nav class="flex items-center justify-between p-5 shadow-md shadow-[rgba(0,0,0,.2)]">
 		<img src="#" alt="logo" />
 		<ul class="flex">
 			<li class="mx-10 active:text-[#00C6B7]">
@@ -30,7 +30,13 @@
 				>
 			</li>
 		</ul>
-		<button>Sign up</button>
+		<button
+			><a
+				href="/signup"
+				class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-600 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+				>Sign up</a
+			></button
+		>
 	</nav>
 
 	<slot />

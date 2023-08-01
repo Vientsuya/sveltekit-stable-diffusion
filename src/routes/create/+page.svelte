@@ -23,16 +23,17 @@
 
 <Container>
 	<div class="flex justify-content">
-		<div class="w-[30rem] p-5 shadow-md shadow-[rgba(0,0,0,.25)] rounded-3xl">
-			<form
-				method="post"
-				action="?/get_image"
-				use:enhance={() => {
-					return ({ update }) => {
-						update({ reset: false });
-					};
-				}}
-			>
+		<form
+			class="w-[30rem] shadow-md shadow-[rgba(0,0,0,.25)] rounded-3xl"
+			method="POST"
+			action="?/get_image"
+			use:enhance={() => {
+				return ({ update }) => {
+					update({ reset: false });
+				};
+			}}
+		>
+			<div class="p-5">
 				{#if data}
 					<DynamicSelect caption="Model" selectOptions={data.models} selectName="sd-model" />
 				{/if}
@@ -103,21 +104,20 @@
 					/>
 				</div>
 
-				<div class="flex justify-around">
-					<button
-						type="submit"
-						class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
-					>
-						Get Image
-					</button>
+				<button
+					class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+					on:click|preventDefault={loadExamplePrompt}>Load Prompt</button
+				>
+			</div>
 
-					<button
-						class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
-						on:click|preventDefault={loadExamplePrompt}>Load Prompt</button
-					>
-				</div>
-			</form>
-		</div>
+			<button
+				type="submit"
+				class="w-full rounded-b-3xl px-6 py-3 leading-5 text-white transition-colors duration-200 transform bg-pink-500 hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+			>
+				Get Image
+			</button>
+		</form>
+
 		<div class="w-[512px] h-[512px] ml-12">
 			<ImageGallery images={data.images.images} />
 		</div>
