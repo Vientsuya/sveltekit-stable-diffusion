@@ -6,7 +6,8 @@ export default {
 			colors: {
 				'theme-light-black': '#1F2833',
 				'theme-dark-black': '#151C24',
-				'theme-lighter-black': '#353D47'
+				'theme-lighter-black': '#353D47',
+				'theme-light-pink': '#ECB8D1'
 			}
 		}
 	},
