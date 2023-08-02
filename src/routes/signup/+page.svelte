@@ -10,7 +10,7 @@
 	<div
 		class="flex items-center justify-center h-full w-96 mt-44 shadow-md shadow-[rgba(0,0,0,.25)] rounded-3xl p-8"
 	>
-		<form action="?create_user" method="POST" class="w-full">
+		<form action="?/create_user" method="POST" class="w-full">
 			<div class="flex flex-col items-center justify-center w-full h-full">
 				<h1 class="mb-5 text-3xl font-bold text-white">Sign up</h1>
 				<div class="flex flex-col w-full">

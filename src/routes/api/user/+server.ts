@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import type { Image } from '$lib/api_interactions/db_handler';
+import { PrismaClient, Prisma } from '@prisma/client';
+import type { UserFormData } from '../../../ambient';
 import type { RequestEvent } from './$types.js';
 
 const prisma = new PrismaClient();
@@ -21,12 +21,16 @@ export async function GET() {
 }
 
 export async function POST(requestEvent: RequestEvent) {
-	const body: Image = await requestEvent.request.json();
+	const body: UserFormData = await requestEvent.request.json();
+	console.log(body);
 	try {
 		if (body) {
-			const res = await prisma.images.create({ data: body });
+			const res = await prisma.users.create({ data: body });
 			return new Response(
-				JSON.stringify({ message: 'Everything went OK.', added_image: body.image_url }),
+				JSON.stringify({
+					message: 'Created an user successfully',
+					registered_users_name: body.username
+				}),
 				{ status: 200 }
 			);
 		} else {
@@ -35,6 +39,7 @@ export async function POST(requestEvent: RequestEvent) {
 			});
 		}
 	} catch (error) {
+		throw error;
 		return new Response(JSON.stringify({ error_message: error }), {
 			status: 500
 		});

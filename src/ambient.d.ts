@@ -11,3 +11,9 @@ export type generatedImage = {
 	seed: string;
 	steps: number;
 };
+
+export type UserFormData = {
+	username: string;
+	password: string;
+	email: string;
+};
