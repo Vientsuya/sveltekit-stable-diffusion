@@ -21,6 +21,10 @@
 	let cfgScaleValue = 7;
 </script>
 
+<svelte:head>
+	<title>Create | SD Svelte</title>
+</svelte:head>
+
 <Container>
 	<div class="flex justify-content">
 		<form

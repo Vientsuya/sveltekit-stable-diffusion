@@ -2,6 +2,10 @@
 	import Container from '../../components/Container.svelte';
 </script>
 
+<svelte:head>
+	<title>Sign up | SD Svelte</title>
+</svelte:head>
+
 <Container>
 	<div
 		class="flex items-center justify-center h-full w-96 mt-44 shadow-md shadow-[rgba(0,0,0,.25)] rounded-3xl p-8"
