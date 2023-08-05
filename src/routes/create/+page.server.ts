@@ -26,7 +26,7 @@ export const load: PageServerLoad = async ({ params }) => {
 };
 
 export const actions: Actions = {
-	get_image: async ({ cookies, request }) => {
+	get_image: async ({ cookies, request, locals }) => {
 		const data = await request.formData();
 
 		const overrideSettings = {
@@ -68,6 +68,6 @@ export const actions: Actions = {
 		};
 
 		fs.writeFileSync(`static/generated_images/${imageId}.png`, imageBuffer);
-		addImage(ImageData);
+		addImage(ImageData, locals.user_id as number);
 	}
 };

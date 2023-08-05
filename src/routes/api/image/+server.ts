@@ -21,10 +21,21 @@ export async function GET() {
 }
 
 export async function POST(requestEvent: RequestEvent) {
-	const body: Image = await requestEvent.request.json();
+	const body = await requestEvent.request.json();
+	console.log(body);
 	try {
 		if (body) {
-			const res = await prisma.images.create({ data: body });
+			const res = await prisma.images.create({
+				data: {
+					...body.image_parameters,
+					author: {
+						connect: {
+							id: body.author_id
+						}
+					}
+				}
+			});
+
 			return new Response(
 				JSON.stringify({ message: 'Everything went OK.', added_image: body.image_url }),
 				{ status: 200 }

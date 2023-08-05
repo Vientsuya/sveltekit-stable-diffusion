@@ -12,17 +12,20 @@ export type Image = {
 	seed: string;
 };
 
-export async function addImage(image: Image) {
+export async function addImage(image: Image, author_id: number) {
 	const payload = {
-		image_url: image.image_url,
-		sd_model_checkpoint: image.sd_model_checkpoint,
-		sd_vae: image.sd_vae,
-		sampler_name: image.sampler_name,
-		prompt: image.prompt,
-		negative_prompt: image.negative_prompt,
-		cfg_scale: image.cfg_scale,
-		steps: image.steps,
-		seed: image.seed
+		image_parameters: {
+			image_url: image.image_url,
+			sd_model_checkpoint: image.sd_model_checkpoint,
+			sd_vae: image.sd_vae,
+			sampler_name: image.sampler_name,
+			prompt: image.prompt,
+			negative_prompt: image.negative_prompt,
+			cfg_scale: image.cfg_scale,
+			steps: image.steps,
+			seed: image.seed
+		},
+		author_id: author_id
 	};
 
 	fetch(API_IMAGE_URL, {

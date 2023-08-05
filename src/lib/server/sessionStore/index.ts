@@ -1,6 +1,7 @@
 import { randomBytes } from 'crypto';
 
 type SessionInfo = {
+	user_id: number;
 	username: string;
 	roles: string[];
 	invalidAt: number;
@@ -48,6 +49,7 @@ export function createSession(user: User, maxAge: number): string {
 	} while (sessionStore.has(sid));
 
 	sessionStore.set(sid, {
+		user_id: user.id,
 		username: user.username,
 		roles: user.roles,
 		invalidAt: Date.now() + maxAge

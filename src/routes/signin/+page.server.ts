@@ -15,7 +15,7 @@ export const actions: Actions = {
 	auth_user: async ({ cookies, request }) => {
 		const data = await request.formData();
 
-		const username: string = data.get('username') as string;
+		const username = data.get('username') as string;
 		const password = data.get('password') as string;
 
 		const user = await checkUserCredentials(username, password);
