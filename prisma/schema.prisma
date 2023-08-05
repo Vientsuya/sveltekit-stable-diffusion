@@ -16,6 +16,7 @@ model Users {
   password        String   @db.VarChar(255)
   email           String   @unique @db.VarChar(255)
   generatedImages Images[]
+  role            String   @default("user") @db.VarChar(32)
   registered_at   DateTime @default(now())
 }
 

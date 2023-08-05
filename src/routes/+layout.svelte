@@ -1,8 +1,9 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	import { onDestroy } from 'svelte';
+	import type { LayoutServerData } from './$types';
 
+	export let data: LayoutServerData;
 	let currentPage: string;
 
 	$: currentPage = $page.url.pathname;
@@ -30,13 +31,26 @@
 				>
 			</li>
 		</ul>
-		<button
-			><a
-				href="/signup"
-				class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-600 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
-				>Sign up</a
-			></button
-		>
+		<div>
+			{#if data.username}
+				<span>Witaj, {data.username}</span>
+			{:else}
+				<button
+					><a
+						href="/signin"
+						class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-600 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+						>Sign in</a
+					></button
+				>
+				<button
+					><a
+						href="/signup"
+						class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-600 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+						>Sign up</a
+					></button
+				>
+			{/if}
+		</div>
 	</nav>
 
 	<slot />

@@ -6,9 +6,9 @@ const prisma = new PrismaClient();
 
 export async function GET() {
 	try {
-		const res = await prisma.images.findMany();
+		const user = await prisma.users.findMany();
 
-		return new Response(JSON.stringify({ message: 'Wszystko poszło git', images: res }), {
+		return new Response(JSON.stringify({ message: 'User was found.', user: user }), {
 			status: 200
 		});
 	} catch (error) {
@@ -22,7 +22,6 @@ export async function GET() {
 
 export async function POST(requestEvent: RequestEvent) {
 	const body: UserFormData = await requestEvent.request.json();
-	console.log(body);
 	try {
 		if (body) {
 			const res = await prisma.users.create({ data: body });
