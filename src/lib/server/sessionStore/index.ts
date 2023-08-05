@@ -56,6 +56,10 @@ export function createSession(user: User, maxAge: number): string {
 	return sid;
 }
 
+export function deleteSession(sid: Sid): void {
+	sessionStore.delete(sid);
+}
+
 function clean() {
 	const now = Date.now();
 	for (const [sid, sessionInfo] of sessionStore) {

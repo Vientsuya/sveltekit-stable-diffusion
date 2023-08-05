@@ -15,7 +15,7 @@
 	>
 		<form action="?/auth_user" method="POST" class="w-full">
 			<div class="flex flex-col items-center justify-center w-full h-full">
-				<h1 class="mb-5 text-3xl font-bold text-white">Sign up</h1>
+				<h1 class="mb-5 text-3xl font-bold text-white">Sign in</h1>
 				<div class="flex flex-col w-full">
 					<label for="username" class="mb-2 text-md font-medium text-white">Username</label>
 					<input

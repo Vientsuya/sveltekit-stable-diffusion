@@ -34,6 +34,15 @@
 		<div>
 			{#if data.username}
 				<span>Witaj, {data.username}</span>
+				<button
+					><a
+						href="/logout"
+						data-sveltekit-preload-data="off"
+						data-sveltekit-reload
+						class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-600 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+						>Log out</a
+					></button
+				>
 			{:else}
 				<button
 					><a
