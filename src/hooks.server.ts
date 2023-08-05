@@ -8,7 +8,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		const session = getSession(sid);
 		if (session) {
 			event.locals.username = session.username;
-			event.locals.role = session.role;
+			event.locals.roles = session.roles;
 		} else {
 			// remove invalid/expired/unknown cookie
 			cookies.delete('sid');

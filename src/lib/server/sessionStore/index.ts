@@ -2,7 +2,7 @@ import { randomBytes } from 'crypto';
 
 type SessionInfo = {
 	username: string;
-	role: string;
+	roles: string[];
 	invalidAt: number;
 };
 
@@ -11,7 +11,7 @@ export type User = {
 	username: string;
 	password: string;
 	email: string;
-	role: string;
+	roles: string[];
 	registered_at: Date;
 };
 
@@ -49,7 +49,7 @@ export function createSession(user: User, maxAge: number): string {
 
 	sessionStore.set(sid, {
 		username: user.username,
-		role: user.role,
+		roles: user.roles,
 		invalidAt: Date.now() + maxAge
 	});
 

@@ -16,8 +16,14 @@ model Users {
   password        String   @db.VarChar(255)
   email           String   @unique @db.VarChar(255)
   generatedImages Images[]
-  role            String   @default("user") @db.VarChar(32)
+  roles           Roles[]
   registered_at   DateTime @default(now())
+}
+
+model Roles {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique @db.VarChar(32)
+  users Users[]
 }
 
 model Images {

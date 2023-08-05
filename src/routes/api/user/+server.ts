@@ -6,7 +6,11 @@ const prisma = new PrismaClient();
 
 export async function GET() {
 	try {
-		const user = await prisma.users.findMany();
+		const user = await prisma.users.findMany({
+			include: {
+				roles: true
+			}
+		});
 
 		return new Response(JSON.stringify({ message: 'User was found.', user: user }), {
 			status: 200
@@ -24,7 +28,22 @@ export async function POST(requestEvent: RequestEvent) {
 	const body: UserFormData = await requestEvent.request.json();
 	try {
 		if (body) {
-			const res = await prisma.users.create({ data: body });
+			const res = await prisma.users.create({
+				data: {
+					username: body.username,
+					password: body.password,
+					email: body.email,
+					roles: {
+						connect: {
+							id: 1
+						}
+					}
+				},
+				include: {
+					roles: true
+				}
+			});
+
 			return new Response(
 				JSON.stringify({
 					message: 'Created an user successfully',
