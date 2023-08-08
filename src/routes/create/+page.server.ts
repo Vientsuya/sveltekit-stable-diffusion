@@ -8,7 +8,8 @@ import {
 	API_SD_MODELS_URL,
 	API_SAMPLERS_URL,
 	API_VAE_URL,
-	API_IMAGE_URL
+	API_IMAGE_URL,
+	PROJECT_IMAGE_DIR
 } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -56,7 +57,7 @@ export const actions: Actions = {
 		const imageId = nanoid(10);
 
 		const ImageData = {
-			image_url: `/generated_images/${imageId}.png`,
+			image_url: `generated_images/${imageId}.png`,
 			sd_model_checkpoint: response.parameters.override_settings.sd_model_checkpoint as string,
 			sd_vae: response.parameters.override_settings.sd_vae as string,
 			sampler_name: response.parameters.sampler_name as string,

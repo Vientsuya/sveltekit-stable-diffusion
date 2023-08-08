@@ -46,6 +46,7 @@ export async function POST(requestEvent: RequestEvent) {
 			});
 		}
 	} catch (error) {
+		throw error;
 		return new Response(JSON.stringify({ error_message: error }), {
 			status: 500
 		});
