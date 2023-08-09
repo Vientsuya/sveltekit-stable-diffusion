@@ -13,7 +13,11 @@ async function createUser(payload: UserFormData) {
 		}
 	}).then((res) => res.json());
 
-	console.log(`to jest userRes: ${userRes}`);
+	return userRes.user;
+}
+
+async function isUsernameTaken(username: string) {
+	const userRes = await fetch(`${API_USER_URL}?username=${username}`).then((res) => res.json());
 	return userRes.user;
 }
 
@@ -31,13 +35,18 @@ export const actions: Actions = {
 			email: email
 		};
 
-		if (username && password && email) {
-			const user = await createUser(payload);
-			_performLogin(cookies, user);
-
-			throw redirect(303, '/');
-		} else {
+		// error checks
+		if (!username || !password || !email) {
 			return fail(400, { errorMessage: 'Missing credentials' });
 		}
+
+		if (await isUsernameTaken(username)) {
+			return fail(400, { errorMessage: 'Username is already taken' });
+		}
+
+		// create user after checkss
+		const user = await createUser(payload);
+		_performLogin(cookies, user);
+		throw redirect(303, '/');
 	}
 };

@@ -4,13 +4,27 @@ import type { RequestEvent } from './$types.js';
 
 const prisma = new PrismaClient();
 
-export async function GET() {
+export async function GET({ url }) {
 	try {
-		const user = await prisma.users.findMany({
-			include: {
-				roles: true
-			}
-		});
+		const username = url.searchParams.get('username');
+		let user;
+
+		if (username) {
+			user = await prisma.users.findUnique({
+				where: {
+					username: username
+				},
+				include: {
+					roles: true
+				}
+			});
+		} else {
+			user = await prisma.users.findMany({
+				include: {
+					roles: true
+				}
+			});
+		}
 
 		return new Response(JSON.stringify({ message: 'User was found.', user: user }), {
 			status: 200
