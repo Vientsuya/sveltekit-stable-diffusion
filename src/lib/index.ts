@@ -15,5 +15,5 @@ export async function checkUserCredentials(
 
 	const user: User = users.user.find((user: any) => user.username === username);
 
-	return user.password === password && user.username === username ? user : null;
+	return user?.password === password && user?.username === username ? user : null;
 }

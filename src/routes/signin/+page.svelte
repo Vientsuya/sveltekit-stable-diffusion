@@ -39,11 +39,16 @@
 						placeholder="Enter your password here"
 					/>
 				</div>
+
+				{#if form?.errorMessage}
+					<p class="mt-4 text-sm text-red-500">{form.errorMessage}</p>
+				{/if}
+
 				<button
 					type="submit"
 					class="rounded-md px-6 py-2 mt-6 leading-5 text-white transition-colors duration-200 transform bg-pink-500 hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
 				>
-					Sing in
+					Sign in
 				</button>
 			</div>
 		</form>

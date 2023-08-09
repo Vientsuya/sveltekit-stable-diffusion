@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { redirect, fail } from '@sveltejs/kit';
 import { checkUserCredentials } from '$lib';
 import { createSession } from '$lib/server/sessionStore';
 import type { Actions } from './$types';
@@ -18,12 +18,17 @@ export const actions: Actions = {
 		const username = data.get('username') as string;
 		const password = data.get('password') as string;
 
-		const user = await checkUserCredentials(username, password);
-
-		if (user) {
-			console.log('correct credentials', user);
-			performLogin(cookies, user);
-			throw redirect(303, '/');
+		if (username && password) {
+			const user = await checkUserCredentials(username, password);
+			if (user) {
+				console.log('correct credentials', user);
+				performLogin(cookies, user);
+				throw redirect(303, '/');
+			} else {
+				return fail(400, { errorMessage: 'Incorrect credentials' });
+			}
+		} else {
+			return fail(400, { errorMessage: 'Missing credentials' });
 		}
 	}
 };
