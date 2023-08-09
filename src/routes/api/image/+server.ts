@@ -22,7 +22,6 @@ export async function GET() {
 
 export async function POST(requestEvent: RequestEvent) {
 	const body = await requestEvent.request.json();
-	console.log(body);
 	try {
 		if (body) {
 			const res = await prisma.images.create({

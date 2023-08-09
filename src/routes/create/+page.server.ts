@@ -12,13 +12,14 @@ import {
 	PROJECT_IMAGE_DIR
 } from '$env/static/private';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, locals }) => {
 	const responseModels = await fetch(API_SD_MODELS_URL).then((res) => res.json());
 	const responseSamplers = await fetch(API_SAMPLERS_URL).then((res) => res.json());
 	const responseVAE = await fetch(API_VAE_URL).then((res) => res.json());
 	const responseImages = await fetch(API_IMAGE_URL).then((res) => res.json());
 
 	return {
+		userLoggedIn: locals.username !== undefined,
 		models: responseModels.map((model: any) => model.model_name),
 		vaes: responseVAE.map((vae: any) => vae.model_name),
 		samplers: responseSamplers.map((sampler: any) => sampler.name),
