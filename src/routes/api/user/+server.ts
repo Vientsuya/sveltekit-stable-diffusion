@@ -47,7 +47,7 @@ export async function POST(requestEvent: RequestEvent) {
 			return new Response(
 				JSON.stringify({
 					message: 'Created an user successfully',
-					registered_users_name: body.username
+					user: res
 				}),
 				{ status: 200 }
 			);
