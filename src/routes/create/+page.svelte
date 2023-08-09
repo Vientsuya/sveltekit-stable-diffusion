@@ -131,9 +131,7 @@
 	</Container>
 {:else}
 	<MessageBox message="Log in to view this site.">
-		<a
-			href="/signup"
-			class="inline-block text-2xl font-bold text-white bg-pink-600 rounded-md px-4 py-1 mt-4"
+		<a href="/signin" class="inline-block text-2xl text-white bg-pink-600 rounded-md px-4 py-1 mt-4"
 			>Login</a
 		>
 	</MessageBox>

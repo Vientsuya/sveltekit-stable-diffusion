@@ -1,12 +1,22 @@
 import { PrismaClient } from '@prisma/client';
-import type { Image } from '$lib/api_interactions/db_handler';
 import type { RequestEvent } from './$types.js';
 
 const prisma = new PrismaClient();
 
-export async function GET() {
+export async function GET({ url }) {
 	try {
-		const res = await prisma.images.findMany();
+		const userId = url.searchParams.get('user_id');
+		let res;
+
+		if (userId) {
+			res = await prisma.images.findMany({
+				where: {
+					usersId: Number(userId)
+				}
+			});
+		} else {
+			res = await prisma.images.findMany();
+		}
 
 		return new Response(JSON.stringify({ message: 'Wszystko poszło git', images: res }), {
 			status: 200

@@ -16,7 +16,9 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const responseModels = await fetch(API_SD_MODELS_URL).then((res) => res.json());
 	const responseSamplers = await fetch(API_SAMPLERS_URL).then((res) => res.json());
 	const responseVAE = await fetch(API_VAE_URL).then((res) => res.json());
-	const responseImages = await fetch(API_IMAGE_URL).then((res) => res.json());
+	const responseImages = await fetch(`${API_IMAGE_URL}?user_id=${locals.user_id}`).then((res) =>
+		res.json()
+	);
 
 	return {
 		userLoggedIn: locals.username !== undefined,
