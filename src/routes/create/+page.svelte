@@ -5,6 +5,7 @@
 	import Container from '../../components/Container.svelte';
 	import DynamicSelect from '../../components/DynamicSelect.svelte';
 	import ImageGallery from '../../components/ImageGallery.svelte';
+	import MessageBox from '../../components/MessageBox.svelte';
 
 	export let data: PageData;
 
@@ -129,14 +130,11 @@
 		</div>
 	</Container>
 {:else}
-	<div class="w-full flex justify-center mt-24">
-		<div class="text-center">
-			<h1 class="text-4xl font-bold text-white">You are not logged in!</h1>
-			<a
-				href="/signup"
-				class="inline-block text-2xl font-bold text-white bg-pink-600 rounded-md px-4 py-1 mt-4"
-				>Login</a
-			>
-		</div>
-	</div>
+	<MessageBox message="Log in to view this site.">
+		<a
+			href="/signup"
+			class="inline-block text-2xl font-bold text-white bg-pink-600 rounded-md px-4 py-1 mt-4"
+			>Login</a
+		>
+	</MessageBox>
 {/if}
