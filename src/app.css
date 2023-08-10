@@ -5,3 +5,7 @@
 html {
 	font-family: 'Montserrat', sans-serif;
 }
+
+:root {
+	color-scheme: dark;
+}
