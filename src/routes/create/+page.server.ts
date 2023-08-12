@@ -9,7 +9,7 @@ import {
 	API_SAMPLERS_URL,
 	API_VAE_URL,
 	API_IMAGE_URL,
-	PROJECT_IMAGE_DIR
+	API_OPTIONS_URL
 } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
@@ -33,20 +33,29 @@ export const actions: Actions = {
 	get_image: async ({ cookies, request, locals }) => {
 		const data = await request.formData();
 
-		const overrideSettings = {
+		const optionPayload = {
 			sd_model_checkpoint: data.get('sd-model') as string,
 			sd_vae: data.get('sd-vae') as string
 		};
+
+		// load the selected model and vae
+		await fetch(API_OPTIONS_URL, {
+			method: 'POST',
+			body: JSON.stringify(optionPayload),
+			headers: {
+				'content-type': 'application/json; charset=UTF-8'
+			}
+		});
 
 		const payload = {
 			prompt: data.get('prompt') as string,
 			negative_prompt: data.get('negative-prompt') as string,
 			steps: Number(data.get('steps')),
 			cfg_scale: Number(data.get('cfg-scale')),
-			sampler_name: data.get('sampler') as string,
-			override_settings: overrideSettings
+			sampler_name: data.get('sampler') as string
 		};
 
+		// send a txt2img request
 		const response = await fetch(API_TXT2IMG_URL, {
 			method: 'POST',
 			body: JSON.stringify(payload),
@@ -61,8 +70,8 @@ export const actions: Actions = {
 
 		const ImageData = {
 			image_url: `generated_images/${imageId}.png`,
-			sd_model_checkpoint: response.parameters.override_settings.sd_model_checkpoint as string,
-			sd_vae: response.parameters.override_settings.sd_vae as string,
+			sd_model_checkpoint: optionPayload.sd_model_checkpoint as string,
+			sd_vae: optionPayload.sd_vae as string,
 			sampler_name: response.parameters.sampler_name as string,
 			prompt: response.parameters.prompt as string,
 			negative_prompt: response.parameters.negative_prompt as string,
