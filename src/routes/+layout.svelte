@@ -33,7 +33,7 @@
 		</ul>
 		<div>
 			{#if data.username}
-				<span class="mr-3">Witaj, {data.username}</span>
+				<span class="mr-3">Hello, {data.username}</span>
 				<button
 					><a
 						href="/logout"

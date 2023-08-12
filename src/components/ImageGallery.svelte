@@ -12,7 +12,7 @@
 	}
 </script>
 
-<div class={`grid grid-cols-${cols} gap-4 p-12`}>
+<div class={`grid grid-cols-${cols} gap-4 p-10`}>
 	{#if images}
 		{#each images as image}
 			<Image

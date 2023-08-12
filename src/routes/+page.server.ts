@@ -3,7 +3,6 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	const responseImages = await fetch(API_IMAGE_URL).then((res) => res.json());
-	console.log('responseImages', responseImages);
 
 	return {
 		images: responseImages

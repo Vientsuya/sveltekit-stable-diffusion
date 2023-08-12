@@ -4,6 +4,8 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
+	let searchParam = '';
+	$: images = data.images.images.filter((image: any) => image.prompt.includes(searchParam));
 </script>
 
 <svelte:head>
@@ -26,6 +28,7 @@
 					type="text"
 					class="h-14 w-[42rem] bg-theme-light-black pr-8 pl-5 rounded z-0 focus:shadow outline outline-2 outline-gray-600 focus:outline-2 focus:outline-gray-500"
 					placeholder="Search images..."
+					bind:value={searchParam}
 				/>
 				<div class="absolute top-4 right-3">
 					<i class="fa fa-search text-gray-400 z-20 hover:text-gray-500" />
@@ -33,7 +36,6 @@
 			</div>
 		</div>
 
-		{console.log(data.images.images)}
-		<ImageGallery images={data.images.images} cols={5} />
+		<ImageGallery {images} cols={5} />
 	</main>
 </Container>
