@@ -32,9 +32,9 @@
 			</div>
 		</div>
 
-		<div class="flex flex-wrap gap-3">
+		<div class="flex flex-wrap gap-3 justify-center items-center">
 			{#each data.images.images as image}
-				<div class="w-52 h-72 flex justify-center items-center rounded-2xl overflow-hidden">
+				<div class="w-[25%] h-72 flex justify-center items-center rounded-2xl overflow-hidden">
 					<img src={image.image_url} alt="generated" class="object-cover min-w-full min-h-full" />
 				</div>
 			{/each}

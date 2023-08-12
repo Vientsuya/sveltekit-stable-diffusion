@@ -9,7 +9,7 @@
 	$: currentPage = $page.url.pathname;
 </script>
 
-<div class="w-screen h-screen text-white">
+<div class="text-white">
 	<nav class="flex items-center justify-between p-5 shadow-md shadow-[rgba(0,0,0,.2)]">
 		<img src="#" alt="logo" />
 		<ul class="flex">
