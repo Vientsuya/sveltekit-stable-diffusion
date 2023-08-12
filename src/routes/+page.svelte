@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Container from '../components/Container.svelte';
+	import ImageGallery from '../components/ImageGallery.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -32,12 +33,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-wrap gap-3 justify-center items-center">
-			{#each data.images.images as image}
-				<div class="w-[25%] h-72 flex justify-center items-center rounded-2xl overflow-hidden">
-					<img src={image.image_url} alt="generated" class="object-cover min-w-full min-h-full" />
-				</div>
-			{/each}
-		</div>
+		{console.log(data.images.images)}
+		<ImageGallery images={data.images.images} cols={5} />
 	</main>
 </Container>

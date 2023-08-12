@@ -10,6 +10,9 @@ export type generatedImage = {
 	sd_vae: string;
 	seed: string;
 	steps: number;
+	author?: {
+		username: string;
+	};
 };
 
 export type UserFormData = {

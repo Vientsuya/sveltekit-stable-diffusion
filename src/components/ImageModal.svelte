@@ -92,6 +92,13 @@
 							${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
 							: 'N/A'}
 					</p>
+
+					{#if $imageModal.author?.username}
+						<p class="mt-1">
+							<span class="font-bold">Author:</span>
+							{$imageModal.author.username}
+						</p>
+					{/if}
 				</div>
 			</div>
 		</div>

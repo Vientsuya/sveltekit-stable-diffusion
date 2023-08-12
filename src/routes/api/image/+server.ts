@@ -15,7 +15,15 @@ export async function GET({ url }) {
 				}
 			});
 		} else {
-			res = await prisma.images.findMany();
+			res = await prisma.images.findMany({
+				include: {
+					author: {
+						select: {
+							username: true
+						}
+					}
+				}
+			});
 		}
 
 		return new Response(JSON.stringify({ message: 'Wszystko poszło git', images: res }), {

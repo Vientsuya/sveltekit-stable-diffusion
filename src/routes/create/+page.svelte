@@ -125,7 +125,7 @@
 			</form>
 
 			<div class="w-[512px] h-[512px] ml-12">
-				<ImageGallery images={data.images.images} />
+				<ImageGallery images={data.images.images} canDelete={true} />
 			</div>
 		</div>
 	</Container>
