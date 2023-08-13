@@ -27,11 +27,7 @@
 </script>
 
 <button on:click class="relative group">
-	<img
-		class="h-auto max-w-full rounded-lg cursor-pointer"
-		src={generatedImage}
-		alt={generatedImageAlt}
-	/>
+	<img class="rounded-lg cursor-pointer" src={generatedImage} alt={generatedImageAlt} />
 	{#if canDelete}
 		<button
 			on:click|stopPropagation={() => deleteImage(id)}

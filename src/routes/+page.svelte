@@ -36,6 +36,6 @@
 			</div>
 		</div>
 
-		<ImageGallery {images} cols={5} />
+		<ImageGallery {images} gridCols="grid-cols-5" />
 	</main>
 </Container>

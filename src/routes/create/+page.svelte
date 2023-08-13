@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ActionData, PageData } from './$types';
+	import type { PageData } from './$types';
 	import { enhance } from '$app/forms';
 
 	import Container from '../../components/Container.svelte';

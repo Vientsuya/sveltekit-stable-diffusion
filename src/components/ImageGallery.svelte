@@ -4,7 +4,7 @@
 	import { imageModal } from '../stores/stores';
 
 	export let images: any;
-	export let cols: number = 3;
+	export let gridCols: string = 'grid-cols-3';
 	export let canDelete: boolean = false;
 
 	function handleImageClick(image: any) {
@@ -12,7 +12,7 @@
 	}
 </script>
 
-<div class={`grid grid-cols-${cols} gap-4 p-10`}>
+<div class={`grid ${gridCols} gap-4 p-10`}>
 	{#if images}
 		{#each images as image}
 			<Image

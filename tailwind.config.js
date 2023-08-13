@@ -9,7 +9,12 @@ export default {
 				'theme-lighter-black': '#353D47',
 				'theme-light-pink': '#ECB8D1'
 			}
-		}
+		},
+		safelist: [
+			{
+				pattern: /grid-cols-[1-9]/
+			}
+		]
 	},
 	plugins: [require('tailwind-scrollbar')({ nocompatible: true })]
 };
