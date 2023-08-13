@@ -4,6 +4,7 @@
 
 html {
 	font-family: 'Montserrat', sans-serif;
+	scrollbar-gutter: stable;
 }
 
 :root {

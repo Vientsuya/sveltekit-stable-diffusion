@@ -10,9 +10,9 @@
 </script>
 
 <div class="text-white">
-	<nav class="flex items-center justify-between p-5 shadow-md shadow-[rgba(0,0,0,.2)]">
+	<nav class="relative flex items-center justify-between p-5 shadow-sm shadow-[rgba(0,0,0,0.3)]">
 		<img src="#" alt="logo" />
-		<ul class="flex">
+		<ul class="flex absolute left-1/2 translate-x-[-50%]">
 			<li class="mx-10 active:text-[#00C6B7]">
 				<a href="/" class={`${currentPage === '/' ? 'text-theme-light-pink' : 'text-white'}`}
 					>Home</a
