@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 	import { enhance } from '$app/forms';
 
 	import Container from '../../components/Container.svelte';
@@ -7,7 +6,7 @@
 	import ImageGallery from '../../components/ImageGallery.svelte';
 	import MessageBox from '../../components/MessageBox.svelte';
 
-	export let data: PageData;
+	export let data;
 
 	function loadExamplePrompt() {
 		const prompt = document.getElementById('prompt') as HTMLTextAreaElement;

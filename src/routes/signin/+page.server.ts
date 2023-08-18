@@ -1,7 +1,6 @@
 import { redirect, fail } from '@sveltejs/kit';
 import { checkUserCredentials } from '$lib';
 import { createSession } from '$lib/server/sessionStore';
-import type { Actions } from './$types';
 import type { Cookies } from '@sveltejs/kit';
 import type { User } from '$lib/server/sessionStore';
 
@@ -11,7 +10,7 @@ export function _performLogin(cookies: Cookies, user: User) {
 	cookies.set('sid', sid, { maxAge });
 }
 
-export const actions: Actions = {
+export const actions = {
 	auth_user: async ({ cookies, request }) => {
 		const data = await request.formData();
 

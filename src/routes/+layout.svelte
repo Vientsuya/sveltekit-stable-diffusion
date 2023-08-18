@@ -1,9 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	import type { LayoutServerData } from './$types';
 
-	export let data: LayoutServerData;
+	export let data;
 	let currentPage: string;
 
 	$: currentPage = $page.url.pathname;

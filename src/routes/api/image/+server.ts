@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import type { RequestEvent } from './$types.js';
 
 const prisma = new PrismaClient();
 
@@ -38,7 +37,7 @@ export async function GET({ url }) {
 	}
 }
 
-export async function POST(requestEvent: RequestEvent) {
+export async function POST(requestEvent) {
 	const body = await requestEvent.request.json();
 	try {
 		if (body) {
@@ -74,7 +73,7 @@ export async function POST(requestEvent: RequestEvent) {
 	}
 }
 
-export async function DELETE(requestEvent: RequestEvent) {
+export async function DELETE(requestEvent) {
 	const body = await requestEvent.request.json();
 	try {
 		if (body) {

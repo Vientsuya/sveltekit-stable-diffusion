@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Container from '../components/Container.svelte';
 	import ImageGallery from '../components/ImageGallery.svelte';
-	import type { PageData } from './$types';
 
-	export let data: PageData;
+	export let data;
 	let searchParam = '';
 	$: images = data.images.images.filter((image: any) => image.prompt.includes(searchParam));
 </script>

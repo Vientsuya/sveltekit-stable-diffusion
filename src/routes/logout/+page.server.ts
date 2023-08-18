@@ -1,8 +1,7 @@
 import { deleteSession } from '$lib/server/sessionStore';
 import { redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = ({ cookies }) => {
+export const load = ({ cookies }) => {
 	const sid = cookies.get('sid');
 	if (sid) {
 		cookies.delete('sid');

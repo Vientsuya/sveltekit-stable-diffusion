@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Container from '../../components/Container.svelte';
-	import type { ActionData } from './$types';
 
-	export let form: ActionData;
+	export let form;
 </script>
 
 <svelte:head>

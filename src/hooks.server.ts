@@ -1,7 +1,6 @@
 import { getSession } from '$lib/server/sessionStore';
-import type { Handle } from '@sveltejs/kit';
 
-export const handle: Handle = async ({ event, resolve }) => {
+export const handle = async ({ event, resolve }) => {
 	const { cookies } = event;
 	const sid = cookies.get('sid');
 	if (sid) {

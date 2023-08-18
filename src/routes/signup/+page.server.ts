@@ -1,7 +1,6 @@
 import { redirect, fail } from '@sveltejs/kit';
 import { API_USER_URL } from '$env/static/private';
 import { _performLogin } from '../signin/+page.server';
-import type { Actions } from './$types';
 import type { UserFormData } from '../../ambient';
 
 async function createUser(payload: UserFormData) {
@@ -21,7 +20,7 @@ async function isUsernameTaken(username: string) {
 	return userRes.user;
 }
 
-export const actions: Actions = {
+export const actions = {
 	create_user: async ({ cookies, request }) => {
 		const data = await request.formData();
 

@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import { nanoid } from 'nanoid';
 import { addImage } from '$lib/api_interactions/db_handler';
 import getSeed from '$lib/utils/get_seed';
-import type { Actions, PageServerLoad } from './$types';
 import {
 	API_TXT2IMG_URL,
 	API_SD_MODELS_URL,
@@ -12,7 +11,7 @@ import {
 	API_OPTIONS_URL
 } from '$env/static/private';
 
-export const load: PageServerLoad = async ({ params, locals }) => {
+export const load = async ({ params, locals }) => {
 	const responseModels = await fetch(API_SD_MODELS_URL).then((res) => res.json());
 	const responseSamplers = await fetch(API_SAMPLERS_URL).then((res) => res.json());
 	const responseVAE = await fetch(API_VAE_URL).then((res) => res.json());
@@ -29,7 +28,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	};
 };
 
-export const actions: Actions = {
+export const actions = {
 	get_image: async ({ cookies, request, locals }) => {
 		const data = await request.formData();
 
