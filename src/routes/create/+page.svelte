@@ -12,7 +12,7 @@
 		const prompt = document.getElementById('prompt') as HTMLTextAreaElement;
 		const negativePrompt = document.getElementById('negative-prompt') as HTMLTextAreaElement;
 		prompt.value =
-			'photo, raw image, highres, intricate detailing, (masterpiece:1.2), fujifilm xt3,';
+			'photo, raw image, highres,intricate detailing, (masterpiece:1.2), fujifilm xt3,';
 		negativePrompt.value =
 			'(fat:1.3), 3d, cartoon, anime, sketches, (worst quality, bad quality, cropped:1.4) ((monochrome)), ((grayscale)), (negative_hands:1.0), (easynegative:0.8), (bad-artist-anime:0.8), (bad-artist:0.8), (bad-picture-chill-75v:0.8), (bad_prompt_version2:0.8), (bad_quality:0.8), nude, nsfw';
 	}
